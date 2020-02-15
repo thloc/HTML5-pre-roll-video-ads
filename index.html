@@ -56,6 +56,7 @@
 
 <script>
 	var v = document.getElementById("video-area");
+	var idVar;
 
 	function showAds() {
 		document.getElementById("ads-popup").style.visibility="visible";
@@ -69,17 +70,24 @@
 		var t;
 		t = Math.round(v.currentTime);
 		document.getElementById("seek_status").innerHTML="Current Time: " + t + " seconds";
-		if ( t >= 8 && t <= 18) {
+		if ( t >= 5 && t <= 10) {
 			showAds();
 		}else {
 			hideAds();
-		}	
+		}
+
+		if (t > 10) {
+			clearInterval(idVar);
+			document.getElementById("seek_status").style.visibility="hidden";
+		} 
 	}
 
 	hideAds();
 
 	v.addEventListener('playing', function() {
-		setInterval(catch_the_frame,500);
+		idVar = setInterval(catch_the_frame,500);
 	}, false);
+
+
 </script>
 </html>
